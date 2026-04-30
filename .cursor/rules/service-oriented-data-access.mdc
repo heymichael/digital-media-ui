@@ -1,0 +1,32 @@
+---
+description: Service-oriented data access — frontend uses API, never direct storage
+alwaysApply: true
+---
+
+# Service-Oriented Data Access
+
+The Digital Media UI accesses all asset data through the Digital Media API. Frontend code never reads or writes to GCS or the database directly.
+
+## Rules
+
+1. **All asset operations go through `/media/api/*` endpoints.** Use the `mediaFetch` wrapper from `@haderach/shared-ui`.
+
+2. **Signed URLs come from the API.** Call `/media/api/assets/{id}/url` for display URLs, `/media/api/upload/initiate` for upload URLs.
+
+3. **Auth is handled by the shared-ui layer.** `mediaFetch` automatically adds the Firebase token and `X-Active-Org` header.
+
+## Correct patterns
+
+```typescript
+// Fetching assets
+const response = await mediaFetch('/assets')
+
+// Searching
+const response = await mediaFetch('/search', {
+  method: 'POST',
+  body: JSON.stringify({ query, mode: 'hybrid' }),
+})
+
+// Getting image URL
+const response = await mediaFetch(`/assets/${id}/url`)
+```

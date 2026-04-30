@@ -1,0 +1,15 @@
+---
+description: Points to docs/architecture.md for design decisions
+alwaysApply: true
+---
+
+# Architecture pointer
+
+- Use `docs/architecture.md` as the canonical source for:
+  - Component structure and data flow
+  - Authentication and API integration
+  - Styling and design tokens
+  - Build and deploy flow
+- When planning or implementing multi-file changes, check that file first.
+- If code and docs diverge, update `docs/architecture.md` in the same change.
+- For cross-repo context (repo purposes, relationships, shared infra), read `../haderach-tasks/repos.md`.

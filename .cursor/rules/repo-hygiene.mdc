@@ -1,0 +1,20 @@
+---
+description: App repo boundaries and documentation-first guardrails
+alwaysApply: true
+---
+
+# Digital Media UI Boundary Rule
+
+This repository is the Digital Media library SPA for the Haderach platform. It provides a web interface for uploading, browsing, searching, and managing image assets.
+
+- Keep strict separation of concerns:
+  - This repo owns the media library UI, components, and frontend logic.
+  - Asset storage, metadata, and search live in the digital-media backend service.
+  - Platform orchestration, routing, and cross-app concerns remain outside this repo.
+- All data access goes through the Digital Media API (`/media/api/*`). Never access GCS or the database directly from frontend code.
+- Keep naming kebab-case for repo/path conventions; use camelCase for TypeScript as language convention requires.
+- Prefer explicit docs and small config contracts over heavy scripts or premature automation.
+- Use or update docs when behavior/contracts change:
+  - `README.md`
+  - `docs/architecture.md`
+- When adding new structure, keep it minimal and production-minded.
