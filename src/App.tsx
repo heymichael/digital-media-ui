@@ -23,7 +23,7 @@ export function App() {
   const chatRef = useRef<ChatPanelHandle>(null)
   const paneRef = useRef<PaneLayoutHandle>(null)
 
-  const handleToolResult = useCallback((toolNames: string[]) => {
+  const handleToolResult = useCallback((_toolNames: string[]) => {
     setRefreshKey((k) => k + 1)
   }, [])
 
