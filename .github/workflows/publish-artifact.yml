@@ -31,6 +31,13 @@ jobs:
         with:
           node-version: 22
 
+      - name: Verify shared-ui has media app
+        run: |
+          echo "Checking app-catalog.ts for media entry..."
+          grep -n "media" ../haderach-home/packages/shared-ui/src/auth/app-catalog.ts || (echo "ERROR: media not found in app-catalog!" && exit 1)
+          echo "haderach-home commit:"
+          git -C ../haderach-home log -1 --oneline
+
       - name: Install dependencies
         run: npm install
 
