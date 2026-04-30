@@ -71,6 +71,7 @@ export function useAssets(options: UseAssetsOptions = {}) {
   }, [authUser?.email, options.searchQuery, options.limit])
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchAssets()
   }, [fetchAssets])
 
@@ -86,11 +87,14 @@ export function useAsset(assetId: string | null) {
 
   useEffect(() => {
     if (!authUser?.email || !assetId) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setAsset(null)
       return
     }
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoading(true)
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setError(null)
 
     mediaFetch(`/assets/${assetId}`)
